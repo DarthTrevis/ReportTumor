@@ -1,0 +1,11 @@
+{
+"classify" : {
+    "granularity" : {
+        "t" : "number",
+        "n" : "ternary",
+        "m" : "ternary"
+    }
+},
+"replace-to-x": ["Onbekend","?"],
+"columns": { "tnm": "cTNM", "report": "report"}
+}
