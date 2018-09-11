@@ -16,6 +16,10 @@ class AnnotateUMLS(object):
         self.s.connect((self.TCP_IP, self.TCP_PORT))
 
     def annotate(self, report):
+
+        if not report:
+            return None
+
         data = {}
         data['text'] = report
         json_data = json.dumps(data)
