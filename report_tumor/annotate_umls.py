@@ -20,14 +20,14 @@ class AnnotateUMLS(object):
         data['text'] = report
         json_data = json.dumps(data)
         json_data_crlf = json_data+'\r\n'
-        print("send " + json_data)
+        #print("send " + json_data)
         self.s.sendall(json_data_crlf.encode('Cp1255'))
 
         data_response = self.recvall()
         data_response_obj = {}
         try:
             data_response_obj['response'] = json.loads(data_response.decode("utf-8"))
-            print('received data={} '.format(data_response_obj['response']))
+            #print('received data={} '.format(data_response_obj['response']))
             return data_response_obj['response']
         except JSONDecodeError:
             print("JSONDecodeError " + json_data)

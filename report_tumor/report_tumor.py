@@ -38,6 +38,8 @@ class ReportTumor(object):
         with open(config_file, 'r') as f:
             self.config = json.load(f)
 
+        self.output_file = open("./" + "classify.txt", "w")
+
         self.annotate_umls = AnnotateUMLS()
         self.parse_reports(report_xlsx, self.config)
 
@@ -71,7 +73,11 @@ class ReportTumor(object):
 
     def classify_reports(self):
 
-        for row in self.rows:
+        totalReports = len(self.rows)
+
+        for idx, row in enumerate(self.rows):
+            print('report ' + str(idx+1) + '/' + str(totalReports))
+
             tnm = row[self.index_tnm]
             report = row[self.index_report]
             tnm = self.tnm_replace_x(tnm, self.config['replace-to-x'])
@@ -85,7 +91,11 @@ class ReportTumor(object):
             print('{}'.format(m))
 
             report_annotated = self.annotate_report(report)
-            print(report_annotated)
+            json_data = json.dumps(report_annotated)
+
+            self.output_file.write(json_data + '\n')
+            self.output_file.flush()
+            #print(report_annotated)
 
     def tnm_replace_x(self, label, replace_to_x_list):
         label = label.upper()
