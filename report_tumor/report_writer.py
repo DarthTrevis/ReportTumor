@@ -11,3 +11,6 @@ class ReportWriter(object):
         self.output_file.write(json_data + '\n')
         self.output_file.flush()
         #print(report_annotated)
+ß
+    def close(self):
+        self.output_file.close()

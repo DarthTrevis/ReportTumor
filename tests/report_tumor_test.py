@@ -28,6 +28,7 @@ class TestReportTumor(unittest.TestCase):
             report_tumor.classify_report(report)
             report_writer.write_result(report)
 
+        report_writer.close()
 
 if __name__ == '__main__':
     unittest.main()
